@@ -1,4 +1,4 @@
-from alchemy.transmutation import lead_to_gold
+import alchemy.transmutation
 
 print("=== Transmutation 1 ===")
 print("Import transmutation module directly")
