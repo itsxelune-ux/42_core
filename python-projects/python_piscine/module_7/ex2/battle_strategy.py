@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
-class ABattleStrategy(ABC):
+class BattleStrategy(ABC):
 
     @abstractmethod
-    def is_valid(self, creature) -> bool:
+    def is_valid(self, creature: Any) -> bool:
         ...
 
     @abstractmethod
-    def act(self, creature) -> None:
+    def act(self, creature: Any) -> None:
         ...

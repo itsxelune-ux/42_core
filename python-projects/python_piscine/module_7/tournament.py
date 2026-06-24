@@ -1,4 +1,4 @@
-from ex0 import FlameFactory, AquaFactory
+from ex0 import FlameFactory, AquaFactory, CreatureFactory
 from ex1 import (
     HealingCreatureFactory,
     TransformCreatureFactory,
@@ -7,11 +7,12 @@ from ex2 import (
     NormalStrategy,
     AggressiveStrategy,
     DefensiveStrategy,
+    BattleStrategy,
     InvalidStrategyError,
 )
 
 
-def battle(opponents):
+def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
     print("*** Tournament ***")
     print(f"{len(opponents)} opponents involved")
 
@@ -39,7 +40,7 @@ def battle(opponents):
             print()
 
 
-def main():
+def main() -> None:
     print("Tournament 0 (basic)")
     print("[ (Flameling+Normal), (Healing+Defensive) ]")
 

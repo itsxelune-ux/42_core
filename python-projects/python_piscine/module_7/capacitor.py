@@ -1,16 +1,18 @@
+from typing import Any
+
 from ex1 import (
     HealingCreatureFactory,
     TransformCreatureFactory,
 )
 
 
-def test_healing():
+def test_healing() -> None:
     print("Testing Creature with healing capability")
 
     factory = HealingCreatureFactory()
 
     print("base:")
-    creature = factory.create_base()
+    creature: Any = factory.create_base()
     print(creature.describe())
     print(creature.attack())
     print(creature.heal())
@@ -22,13 +24,13 @@ def test_healing():
     print(creature.heal())
 
 
-def test_transform():
+def test_transform() -> None:
     print("Testing Creature with transform capability")
 
     factory = TransformCreatureFactory()
 
     print("base:")
-    creature = factory.create_base()
+    creature: Any = factory.create_base()
     print(creature.describe())
     print(creature.attack())
     print(creature.transform())

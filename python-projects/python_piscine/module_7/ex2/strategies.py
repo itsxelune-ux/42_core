@@ -1,14 +1,16 @@
+from typing import Any
+
 from ex1.capabilities import HealCapability, TransformCapability
-from .battle_strategy import ABattleStrategy
+from .battle_strategy import BattleStrategy
 from .exceptions import InvalidStrategyError
 
 
-class NormalStrategy(ABattleStrategy):
+class NormalStrategy(BattleStrategy):
 
-    def is_valid(self, creature) -> bool:
+    def is_valid(self, creature: Any) -> bool:
         return hasattr(creature, "attack")
 
-    def act(self, creature) -> None:
+    def act(self, creature: Any) -> None:
         if not self.is_valid(creature):
             raise InvalidStrategyError(
                 f"Invalid Creature '{creature.name}' for this normal strategy"
@@ -17,12 +19,12 @@ class NormalStrategy(ABattleStrategy):
         print(creature.attack())
 
 
-class AggressiveStrategy(ABattleStrategy):
+class AggressiveStrategy(BattleStrategy):
 
-    def is_valid(self, creature) -> bool:
+    def is_valid(self, creature: Any) -> bool:
         return isinstance(creature, TransformCapability)
 
-    def act(self, creature) -> None:
+    def act(self, creature: Any) -> None:
         if not self.is_valid(creature):
             raise InvalidStrategyError(
                 (
@@ -36,12 +38,12 @@ class AggressiveStrategy(ABattleStrategy):
         print(creature.revert())
 
 
-class DefensiveStrategy(ABattleStrategy):
+class DefensiveStrategy(BattleStrategy):
 
-    def is_valid(self, creature) -> bool:
+    def is_valid(self, creature: Any) -> bool:
         return isinstance(creature, HealCapability)
 
-    def act(self, creature) -> None:
+    def act(self, creature: Any) -> None:
         if not self.is_valid(creature):
             raise InvalidStrategyError(
                 (
