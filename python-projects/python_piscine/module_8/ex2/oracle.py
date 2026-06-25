@@ -1,8 +1,15 @@
 import os
-from dotenv import load_dotenv  # type: ignore
+import sys
+
+try:
+    from dotenv import load_dotenv  # type: ignore
+except ImportError:
+    print("ERROR: python-dotenv is not installed.")
+    print("Install with: pip install python-dotenv")
+    sys.exit(1)
 
 
-def load_config():
+def load_config() -> dict[str, str | None]:
     return {
         "mode": os.getenv("MATRIX_MODE"),
         "database_url": os.getenv("DATABASE_URL"),
@@ -12,7 +19,7 @@ def load_config():
     }
 
 
-def check_config(config):
+def check_config(config: dict[str, str | None]) -> list[str]:
     missing = []
 
     if not config["mode"]:
@@ -33,7 +40,7 @@ def check_config(config):
     return missing
 
 
-def show_environment(config):
+def show_environment(config: dict[str, str | None]) -> None:
     if config["mode"] == "development":
         print("Database: Connected to local instance")
         print("API Access: Authenticated")
@@ -50,14 +57,14 @@ def show_environment(config):
         print(f"Unknown mode: {config['mode']}")
 
 
-def security_check():
+def security_check() -> None:
     print("\nEnvironment security check:")
     print("[OK] No hardcoded secrets detected")
     print("[OK] .env file properly configured")
     print("[OK] Production overrides available")
 
 
-def main():
+def main() -> None:
     print("ORACLE STATUS: Reading the Matrix...")
 
     load_dotenv()

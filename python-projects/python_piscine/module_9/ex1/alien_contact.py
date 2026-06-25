@@ -10,6 +10,7 @@ class ContactType(Enum):
     physical = "physical"
     telepathic = "telepathic"
 
+
 class AlienContact(BaseModel):
     contact_id: str = Field(min_length=5, max_length=15)
     timestamp: datetime
@@ -27,12 +28,16 @@ class AlienContact(BaseModel):
             raise ValueError("Contact ID must start with 'AC'")
         if self.contact_type == ContactType.physical and not self.is_verified:
             raise ValueError("Physical contact reports must be verified")
-        if self.contact_type == ContactType.telepathic and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least 3 witnesses")
+        if (self.contact_type == ContactType.telepathic
+                and self.witness_count < 3):
+            raise ValueError(
+                "Telepathic contact requires at least 3 witnesses"
+            )
         if self.signal_strength > 7.0 and self.message_received is None:
             raise ValueError("Strong signals should include received messages")
         return self
-    
+
+
 def main():
     print("Alien Contact Log Validation")
     print("=" * 40)
@@ -68,7 +73,7 @@ def main():
     print("Invalid contact report:")
 
     try:
-        bad_contact = AlienContact(
+        AlienContact(
             contact_id="AC_999",
             timestamp=datetime.now(),
             contact_type=ContactType.telepathic,
@@ -81,7 +86,8 @@ def main():
 
     except ValidationError as e:
         print("Expected validation error:")
-        print(e.errors()[0]["msg"])
+        print(e.errors()[0]["ctx"]["error"])
+
 
 if __name__ == "__main__":
     main()

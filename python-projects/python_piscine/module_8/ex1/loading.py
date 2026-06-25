@@ -1,10 +1,11 @@
 import importlib.metadata
+from typing import Any
 
 
-def check_dependency(package_name, description):
+def check_dependency(package_name: str, description: str) -> Any | None:
     try:
         module = importlib.import_module(package_name)
-        version = module.__version__
+        version: str = getattr(module, "__version__", "unknown")
 
         print(f"[OK] {package_name} ({version}) - {description}")
 
@@ -15,7 +16,7 @@ def check_dependency(package_name, description):
         return None
 
 
-def analyze_data(pd, np):
+def analyze_data(pd: Any, np: Any) -> Any:
     print("\nAnalyzing Matrix data...")
 
     data = np.random.randint(0, 100, 1000)
@@ -31,7 +32,7 @@ def analyze_data(pd, np):
     return df
 
 
-def generate_visualization(df):
+def generate_visualization(df: Any) -> None:
     import matplotlib.pyplot as plt
 
     print("\nGenerating visualization...")
@@ -46,7 +47,7 @@ def generate_visualization(df):
     print("Results saved to: matrix_analysis.png")
 
 
-def compare_managers():
+def compare_managers() -> None:
     print("\nDependency Management Comparison\n")
 
     print("pip:")
@@ -61,7 +62,7 @@ def compare_managers():
     print("- locks exact versions")
 
 
-def print_install_help():
+def print_install_help() -> None:
     print("\nMissing dependencies detected.\n")
 
     print("Install with pip:")
@@ -71,7 +72,7 @@ def print_install_help():
     print("poetry install")
 
 
-def main():
+def main() -> None:
     print("LOADING STATUS: Loading programs...")
     print("\nChecking dependencies:")
 

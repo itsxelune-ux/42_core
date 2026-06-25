@@ -7,7 +7,7 @@ import site
 # site -> package installation locations
 
 
-def in_virtualenv():
+def in_virtualenv() -> bool:
     return sys.prefix != sys.base_prefix
 # print(in_virtualenv())
 # print("prefix:", sys.prefix)
