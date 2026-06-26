@@ -65,7 +65,7 @@ def main():
         print(f"Message: '{contact.message_received}'\n")
 
     except ValidationError as e:
-        print("Expected validation error:")
+        print("Validation error: ", end="")
         print(e)
 
     print("=" * 40)
@@ -85,7 +85,7 @@ def main():
         )
 
     except ValidationError as e:
-        print("Expected validation error:")
+        print("Validation error: ", end="")
         print(e.errors()[0]["ctx"]["error"])
 
 

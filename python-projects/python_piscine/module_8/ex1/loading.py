@@ -33,7 +33,7 @@ def analyze_data(pd: Any, np: Any) -> Any:
 
 
 def generate_visualization(df: Any) -> None:
-    import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt  # type: ignore[import-untyped]
 
     print("\nGenerating visualization...")
 

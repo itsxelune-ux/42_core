@@ -50,7 +50,8 @@ class SpaceMission(BaseModel):
             )
             if experienced < len(self.crew) / 2:
                 raise ValueError(
-                    "Long missions require at least 50% experienced crew"
+                    "Long missions require at least 50 percent"
+                    " experienced crew"
                 )
 
         if not all(member.is_active for member in self.crew):
@@ -147,7 +148,7 @@ def main():
         )
 
     except ValidationError as e:
-        print("Expected validation error:")
+        print("Validation error: ", end="")
         print(e.errors()[0]["ctx"]["error"])
 
 
