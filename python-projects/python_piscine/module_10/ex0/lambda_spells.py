@@ -33,7 +33,8 @@ def main() -> None:
     sorted_artifacts = artifact_sorter(artifacts)
 
     print(f"{sorted_artifacts[0]['name']} ({sorted_artifacts[0]['power']}) "
-          f"comes before {sorted_artifacts[1]['name']} ({sorted_artifacts[1]['power']})")
+          f"comes before {sorted_artifacts[1]['name']}"
+          f" ({sorted_artifacts[1]['power']})")
 
     print("\nTesting power_filter")
     filtered_artifacts = power_filter(artifacts, 50)

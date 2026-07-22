@@ -4,7 +4,6 @@ from collections.abc import Callable
 from operator import add, mul
 
 
-
 def spell_reducer(spells: list[int], operation: str) -> int:
     if not spells:
         return 0
@@ -64,8 +63,10 @@ def spell_dispatcher() -> Callable[[Any], str]:
 
     @cast.register(list)
     def _(spell: list) -> str:
-        return f"Multi-cast: {len(spell)} {'spells' if len(spell) > 1 else 'spell'}"
-
+        return (
+                f"Multi-cast: {len(spell)} "
+                f"{'spells' if len(spell) > 1 else 'spell'}"
+        )
     return cast
 
 
